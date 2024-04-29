@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/MailchimpForm.module.css';
+import styles from '../../styles/MailChimpForm.module.css';
 
 const MailchimpForm = () => {
   const placeholder = 'Enter your email';

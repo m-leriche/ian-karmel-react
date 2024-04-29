@@ -1,9 +1,19 @@
+@font-face {
+  font-family: 'Kaoly-Demo-Regular';
+  src: url('../../public/fonts/Kaoly-Demo-Regular.ttf');
+}
+
 .home {
+  flex: 0.75;
+  margin-left: 34px;
+}
+
+.home a {
+  text-decoration: none;
   color: #c9b36e;
   font-size: 36px;
   font-family: 'Kaoly-Demo-Regular', 'sans-serif';
   flex: 0.75;
-  margin-left: 34px;
 }
 
 .links {
@@ -20,6 +30,11 @@
 .link {
   opacity: 0.90;
   position: relative;
+}
+
+.links a {
+  text-decoration: none;
+  color: #e3e3e3;
 }
 
 .link:hover {
