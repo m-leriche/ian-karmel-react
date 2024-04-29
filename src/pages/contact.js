@@ -1,11 +1,22 @@
-import { createClient } from "contentful";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 // import HeadInfo from "../components/HeadInfo/HeadInfo.js";
 import { theme } from "../theme.js";
+import useContentful from "../useContentful.js";
 import styles from "../styles/Contact.module.css";
 import Navbar from "../components/Navbar/Navbar.js";
+import '../styles/globals.css';
 
-export default function Contact({ Contacts }) {
+export default function Contact() {
+  const [contacts, setContacts] = useState([]);
+  const { getData } = useContentful();
+
+  useEffect(() => {
+    getData(['contacts']).then((response) => {
+      setContacts(response.items)
+    })
+  }, [contacts])
+
   return (
     <ThemeProvider theme={theme}>
       {/* <HeadInfo /> */}
@@ -16,7 +27,7 @@ export default function Contact({ Contacts }) {
         </div>
         <div className={`${styles.container} fadeIn`}>
           <div className={styles.contacts}>
-            {Contacts && Contacts.map((contact, i) => {
+            {contacts && contacts.map((contact, i) => {
               return (
                 <div key={i} className={styles.contact}>
                   <p>{contact.fields.name}</p>
@@ -31,22 +42,4 @@ export default function Contact({ Contacts }) {
       </div>
     </ThemeProvider>
   );
-}
-
-export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  });
-
-  const data = await client.getEntries();
-
-  return {
-    props: {
-      Contacts: data.items.filter(
-        (item) => item.sys.contentType.sys.id === "contacts"
-      )
-    },
-    revalidate: 1,
-  };
 }

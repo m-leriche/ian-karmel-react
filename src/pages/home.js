@@ -10,6 +10,7 @@ import BookCircle from "../components/BookCircle/BookCircle.js";
 import TourDatesComponent from "../components/TourDatesComponent/TourDatesComponent.js";
 import Footer from "../components/Footer/Footer.js";
 import MailchimpForm from "../components/MailChimpForm/MailChimpForm.js";
+import '../styles/globals.css';
 
 export default function Home() {
   const [tourDates, setTourDates] = useState([]);
@@ -18,13 +19,11 @@ export default function Home() {
 
   useEffect(() => {
     getData(['tourDates', 'heroImage']).then((response) => {
-      console.log('response', response)
       setHeroImage(response.includes.Asset[0].fields.file.url)
-
       const tourDates = response.items.filter(item => !item.fields.heroImage);
       setTourDates(tourDates)
     })
-  }, [])
+  }, [tourDates, heroImage])
   return (
     <ThemeProvider theme={theme}>
       {/* <HeadInfo /> */}

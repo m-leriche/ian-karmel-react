@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 // import HeadInfo from "../components/HeadInfo/HeadInfo.js";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme.js";
 import styles from "../styles/Page404.module.css";
-// import { useRouter } from "next/router";
 
 export default function Page404() {
   const [countdown, setCountdown] = useState(5);
-  // const router = useRouter();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((currentCountdown) => {
         if (currentCountdown <= 1) {
           clearInterval(interval);
-          // router.push('/');
+          navigate('/');
         }
         return currentCountdown - 1;
       });

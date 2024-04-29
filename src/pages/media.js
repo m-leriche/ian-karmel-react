@@ -1,13 +1,25 @@
-import { createClient } from "contentful";
-// import HeadInfo from "../components/HeadInfo/HeadInfo.js";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar.js";
+import useContentful from "../useContentful.js";
 import styles from "../styles/Media.module.css";
 import MailchimpForm from "../components/MailChimpForm/MailChimpForm.js";
-// import Link from "next/link";
-import { Link } from "react-router-dom";
+import '../styles/globals.css';
 import Footer from "../components/Footer/Footer.js";
 
-function Media({ media, releases }) {
+function Media() {
+  const [releases, setReleases] = useState([]);
+  const [media, setMedia] = useState([]);
+  const { getData } = useContentful();
+
+  useEffect(() => {
+    getData(['media', 'releases']).then((response) => {
+      const mediaItems = response.items.filter(item => item.fields.hasOwnProperty('platform'));
+      setMedia(mediaItems);
+      const releaseItems = response.items.filter(item => item.fields.hasOwnProperty('type'));
+      setReleases(releaseItems);
+    })
+  }, [])
+
   return (
     <div>
       {/* <HeadInfo /> */}
@@ -20,11 +32,9 @@ function Media({ media, releases }) {
           {releases.map((item, i) => {
             return (
               <div key={i} className={styles.release}>
-                <Link legacyBehavior={true} href={item.fields.url}>
-                  <a target="_blank" rel="noopener noreferrer">
-                    <img src={item.fields.image.fields.file.url} alt={item.fields.name} />
-                  </a>
-                </Link>
+                <a href={item.fields.url} target="_blank" rel="noopener noreferrer">
+                  <img src={item.fields.image.fields.file.url} alt={item.fields.name} />
+                </a>
               </div>
             )
           })}
@@ -39,10 +49,10 @@ function Media({ media, releases }) {
           return (
             <div className={styles.video} key={i}>
               <iframe
+                title={item.fields.name}
                 width="560"
                 height="315"
                 src={item.fields.url}
-                title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               >
               </iframe>
@@ -51,7 +61,13 @@ function Media({ media, releases }) {
         } else if (item.fields.platform === 'vimeo') {
           return (
             <div className={styles.video} key={i}>
-              <iframe src={item.fields.url} width="560" height="315" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+              <iframe
+                src={item.fields.url}
+                title={item.fields.name}
+                width="560"
+                height="315"
+                allow="autoplay; fullscreen; picture-in-picture"
+              ></iframe>
             </div>
           )
         }
@@ -64,24 +80,3 @@ function Media({ media, releases }) {
 }
 
 export default Media;
-
-export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  });
-
-  const data = await client.getEntries();
-
-  return {
-    props: {
-      media: data.items.filter(
-        (item) => item.sys.contentType.sys.id === "media"
-      ),
-      releases: data.items.filter(
-        (item) => item.sys.contentType.sys.id === "releases"
-      ),
-    },
-    revalidate: 1,
-  };
-}

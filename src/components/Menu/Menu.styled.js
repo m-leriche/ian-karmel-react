@@ -11,6 +11,7 @@ export const StyledMenu = styled.nav `
   text-align: center;
   margin-top: 79px;
   padding: 2rem;
+  color: #e3e3e3;
   position: absolute;
   top: 0;
   right: 0;

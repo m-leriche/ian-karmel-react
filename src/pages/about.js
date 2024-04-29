@@ -2,44 +2,24 @@ import { useState, useEffect } from "react";
 // import HeadInfo from "../components/HeadInfo/HeadInfo.js";
 import Navbar from "../components/Navbar/Navbar.js";
 import MailchimpForm from "../components/MailChimpForm/MailChimpForm.js";
-import { createClient } from "contentful";
+import useContentful from "../useContentful.js";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme.js";
 import styles from "../styles/About.module.css";
 import Footer from "../components/Footer/Footer.js";
+import '../styles/globals.css';
 
-export default function About({ about }) {
-  const image = about.length > 0
-    ? about.find(item => item.fields && item.fields.image && item.fields.image.fields && item.fields.image.fields.file && item.fields.image.fields.file.url)
-    : null;
-  const [safeDescription, setSafeDescription] = useState("");
+export default function About() {
+  // const [about, setAbout] = useState([]);
+  const [image, setImage] = useState(null);
+  const { getData } = useContentful();
+
   useEffect(() => {
-    if (about.length > 0) {
-      const description = about[0].fields.bio;
-      setSafeDescription(sanitizeHTML(description));
-    }
-  }, [about]);
-
-  function sanitizeHTML(html) {
-    const parser = new DOMParser();
-    const parsedHtml = parser.parseFromString(html, 'text/html');
-    const allowedTags = ['a']; // Add any other tags you want to allow
-    const allowedAttributes = ['href', 'title']; // Add any other attributes you want to allow
-
-    const elements = parsedHtml.body.getElementsByTagName("*");
-
-    for (let element of elements) {
-      for (let attribute of Array.from(element.attributes)) {
-        if (!allowedAttributes.includes(attribute.name)) {
-          element.removeAttribute(attribute.name);
-        }
-      }
-      if (!allowedTags.includes(element.tagName.toLowerCase())) {
-        element.parentNode.replaceChild(document.createTextNode(element.textContent), element);
-      }
-    }
-    return parsedHtml.body.innerHTML;
-  }
+    getData(['about']).then((response) => {
+      setImage(response.includes.Asset[0].fields.file.url)
+      console.log('response', response)
+    })
+  }, [image])
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,8 +30,8 @@ export default function About({ about }) {
       </div>
       <div className={`${styles.container} fadeIn`}>
         <div className={styles.about}>
-          {image.fields.image.fields.file.url &&
-            <img src={image.fields.image.fields.file.url} className={styles.image} alt="Descriptional Text" />
+          {image &&
+            <img src={image} className={styles.image} alt="Descriptional Text" />
           }
           <p>Ian Karmel is an Emmy award winning LA-based stand-up comedian, actor, and writer originally from Portland, Oregon. Ian was head writer for the Emmy award winning <strong>The Late Late Show with James Corden</strong>, and was one of the founding writers in the show&#39;s 2015 re-creation.  Previously he was a staff writer and round table regular on E!&#39;s <strong>Chelsea Lately</strong>.</p>
           <p>Ian&#39;s debut memoir, <i><a href="https://bookshop.org/p/books/t-shirt-swim-club-the-struggle-stretch-marks-and-solitude-of-being-fat-in-a-world-made-for-thin-people-ian-karmel/20601105?ean=9780593580929" target="_blank" rel="noopener noreferrer">T-Shirt Swim Club</a></i>, co-written with his sister Alisa Karmel, will be released by the Penguin Random House imprint Harmony & Rodale Books, on June 11th 2024.  His stand-up has been featured on <strong>Conan</strong>, <strong>The Late Late Show</strong>, Comedy Central, Netflix&#39;s <strong>The Comedy Line Up</strong>, and as Just for Laughs New Face in 2013. His debut comedy album, 9.2 on Pitchfork, was released in 2015. Ian hosts the weekly podcast <strong>All Fantasy Everything</strong>, from Headgum studios. Featured on many best of lists, it&#39;s a lighthearted show where funny people and experts come together to fantasy draft pop culture.</p>
@@ -82,22 +62,4 @@ export default function About({ about }) {
       <Footer />
     </ThemeProvider>
   );
-}
-
-export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  });
-
-  const data = await client.getEntries();
-
-  return {
-    props: {
-      about: data.items.filter(
-        (item) => item.sys.contentType.sys.id === "about"
-      )
-    },
-    revalidate: 1,
-  };
 }

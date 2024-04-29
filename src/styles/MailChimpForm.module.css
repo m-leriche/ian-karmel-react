@@ -7,7 +7,6 @@
   justify-content: center;
   margin: 74px 0 24px 0;
   padding: 0 10px;
-  color: #e3e3e3;
   }
 
 .emailListContainer h3 {
@@ -46,6 +45,7 @@
 
 .submitButton {
   width: 240px;
+  height: 40px;
   background-color: #c9b36e;
   border: none;
   color: black;

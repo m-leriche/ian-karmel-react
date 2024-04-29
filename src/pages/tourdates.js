@@ -1,12 +1,23 @@
-import { createClient } from "contentful";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar.js";
 import TourDatesComponent from "../components/TourDatesComponent/TourDatesComponent.js";
 import MailchimpForm from "../components/MailChimpForm/MailChimpForm.js";
-// import HeadInfo from "../components/HeadInfo/HeadInfo.js";
+import useContentful from "../useContentful.js";
 import styles from "../styles/TourDatesComponent.module.css";
+import '../styles/globals.css';
 import Footer from "../components/Footer/Footer.js";
 
-function TourDatesPage({ tourDates }) {
+function TourDatesPage() {
+  const [tourDates, setTourDates] = useState([]);
+  const { getData } = useContentful();
+
+  useEffect(() => {
+    getData(['tourDates']).then((response) => {
+      const tourDates = response.items
+      setTourDates(tourDates)
+    })
+  }, [tourDates])
+
   return (
     <div>
       {/* <HeadInfo /> */}
@@ -19,22 +30,6 @@ function TourDatesPage({ tourDates }) {
       <Footer />
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  });
-  const data = await client.getEntries();
-  return {
-    props: {
-      tourDates: data.items.filter(
-        (item) => item.sys.contentType.sys.id === "tourDates"
-      )
-    },
-    revalidate: 1,
-  };
 }
 
 export default TourDatesPage;

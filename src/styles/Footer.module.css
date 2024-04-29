@@ -1,10 +1,10 @@
 .footerContainer {
   display: flex;
+  width: 100%;
   justify-content: flex-end;
   margin: 80px 34px 0 0;
-  /* padding-right: 34px; */
+  padding-right: 34px;
   font-size: 10px;
-  color: #e3e3e3;
 }
 
 @media only screen and (max-width: 414px) {

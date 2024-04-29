@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700");
+@font-face {
+  font-family: 'Kaoly-Demo-Regular';
+  src: url('../../public/fonts/Kaoly-Demo-Regular.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -9,14 +14,15 @@ body {
   color: #e3e3e3;
 }
 
-@font-face {
-  font-family: 'Kaoly-Demo-Regular';
-  src: url('../../public/fonts/Kaoly-Demo-Regular.ttf');
-}
-
 canvas {
   height: 100vh !important;
 }
+
+
+/* @font-face {
+  font-family: 'Kaoly-Demo-Regular';
+  src: url('/fonts/Kaoly-Demo-Regular.ttf')
+} */
 
 code {
   font-family: "Montserrat", sans-serif;

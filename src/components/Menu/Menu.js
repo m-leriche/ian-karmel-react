@@ -1,41 +1,29 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { bool } from "prop-types";
-// import Link from "next/link";
 import { StyledMenu } from "./Menu.styled";
+import { Link } from "react-router-dom";
 
 const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
-      {/* <Link legacyBehavior={true} href="https://bookshop.org/p/books/t-shirt-swim-club-the-struggle-stretch-marks-and-solitude-of-being-fat-in-a-world-made-for-thin-people-ian-karmel/20601105?ean=9780593580929">
-        <a target="_blank" rel="noopener noreferrer">
-          T Shirt Swim Club
-        </a>
-      </Link>
-      <Link legacyBehavior={true} href="https://headgum.com/all-fantasy-everything">
-        <a target="_blank" rel="noopener noreferrer">
-          All Fantasy Everything
-        </a>
-      </Link>
-      <Link legacyBehavior={true} href="/tourdates">
-        <a>
-          Shows
-        </a>
-      </Link>
-      <Link legacyBehavior={true} href="/about">
-        <a>
-          About
-        </a>
-      </Link>
-      <Link legacyBehavior={true} href="/media">
-        <a>
-          Media
-        </a>
-      </Link>
-      <Link legacyBehavior={true} href="/contact">
-        <a>
-          Contact
-        </a>
-      </Link> */}
+      <a
+        href="https://bookshop.org/p/books/t-shirt-swim-club-the-struggle-stretch-marks-and-solitude-of-being-fat-in-a-world-made-for-thin-people-ian-karmel/20601105?ean=9780593580929"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        T Shirt Swim Club
+      </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://headgum.com/all-fantasy-everything"
+      >
+        All Fantasy Everything
+      </a>
+      <Link to="/tourdates">Shows</Link>
+      <Link to="/about">About</Link>
+      <Link to="/media">Media</Link>
+      <Link to="/contact">Contact</Link>
       <div className="socials">
         <a className="social" href="https://www.instagram.com/iankarmel/" target="_blank" rel="noopener noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px">    <path d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z"/></svg>

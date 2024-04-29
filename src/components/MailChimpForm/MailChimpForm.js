@@ -14,8 +14,8 @@ const MailchimpForm = () => {
     script.src = '//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js';
     script.type = 'text/javascript';
     script.onload = () => {
-      window.fnames = new Array();
-      window.ftypes = new Array();
+      window.fnames = [];
+      window.ftypes = [];
       window.fnames[0] = 'EMAIL';
       window.ftypes[0] = 'email';
     };
