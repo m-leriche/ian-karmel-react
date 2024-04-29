@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import styles from '../../styles/Footer.module.css';
 
 export default function Footer() {

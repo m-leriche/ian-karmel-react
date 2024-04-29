@@ -16,11 +16,10 @@ function TourDatesPage() {
       const tourDates = response.items
       setTourDates(tourDates)
     })
-  }, [tourDates])
+  }, [tourDates, getData])
 
   return (
     <div>
-      {/* <HeadInfo /> */}
       <Navbar />
       <div className={`${styles.titleContainer}`}>
         <h1>Shows</h1>

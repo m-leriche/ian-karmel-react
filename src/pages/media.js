@@ -18,11 +18,10 @@ function Media() {
       const releaseItems = response.items.filter(item => item.fields.hasOwnProperty('type'));
       setReleases(releaseItems);
     })
-  }, [])
+  }, [getData, media, releases])
 
   return (
     <div>
-      {/* <HeadInfo /> */}
       <Navbar />
       <div className={`${styles.titleContainer}`}>
         <h1>Media</h1>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-// import HeadInfo from "../components/HeadInfo/HeadInfo.js";
 import Navbar from "../components/Navbar/Navbar.js";
 import MailchimpForm from "../components/MailChimpForm/MailChimpForm.js";
 import useContentful from "../useContentful.js";
@@ -19,11 +18,10 @@ export default function About() {
       setImage(response.includes.Asset[0].fields.file.url)
       console.log('response', response)
     })
-  }, [image])
+  }, [image, getData])
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <HeadInfo /> */}
       <Navbar />
       <div className={`${styles.titleContainer}`}>
         <h1>About</h1>

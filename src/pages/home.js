@@ -1,5 +1,4 @@
 // import favicon from "../public/favicon.ico";
-// import HeadInfo from "../components/HeadInfo/HeadInfo.js";
 import { ThemeProvider } from "styled-components";
 import { useEffect, useState } from "react";
 import { theme } from '../theme.js';
@@ -23,10 +22,9 @@ export default function Home() {
       const tourDates = response.items.filter(item => !item.fields.heroImage);
       setTourDates(tourDates)
     })
-  }, [tourDates, heroImage])
+  }, [tourDates, heroImage, getData])
   return (
     <ThemeProvider theme={theme}>
-      {/* <HeadInfo /> */}
       <Navbar />
       <div className={`${styles.heroContainer} fadeIn`} style={{
           backgroundImage: heroImage ? `url(${heroImage})` : 'none',

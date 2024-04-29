@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-// import HeadInfo from "../components/HeadInfo/HeadInfo.js";
 import { theme } from "../theme.js";
 import useContentful from "../useContentful.js";
 import styles from "../styles/Contact.module.css";
@@ -15,11 +14,10 @@ export default function Contact() {
     getData(['contacts']).then((response) => {
       setContacts(response.items)
     })
-  }, [contacts])
+  }, [contacts, getData])
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <HeadInfo /> */}
       <Navbar />
       <div>
         <div className={`${styles.titleContainer}`}>
