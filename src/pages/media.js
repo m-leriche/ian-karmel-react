@@ -28,7 +28,7 @@ function Media() {
       </div>
       <div className={styles.releases}>
         <div className={`${styles.releaseContainer} fadeIn`}>
-          {releases.map((item, i) => {
+          {releases && releases.map((item, i) => {
             return (
               <div key={i} className={styles.release}>
                 <a href={item.fields.url} target="_blank" rel="noopener noreferrer">
@@ -43,7 +43,7 @@ function Media() {
         <h2>Videos</h2>
       </div>
       <div className={styles.videoGallery}>
-      {media.map((item, i) => {
+      {media && media.map((item, i) => {
         if (item.fields.platform === 'youtube') {
           return (
             <div className={styles.video} key={i}>
@@ -69,6 +69,8 @@ function Media() {
               ></iframe>
             </div>
           )
+        } else {
+          return null;
         }
       })}
       </div>
