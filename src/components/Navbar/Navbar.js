@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className={`${styles.navbar}`}>
       <div className={styles.home}>
-        <Link to="/" className={styles.link}>Ian Karmel</Link>
+        <Link to="/">Ian Karmel</Link>
       </div>
       <div ref={hamburgerRef} className={styles.hamburgerMenu}>
           <Menu open={open} setOpen={setOpen} />
