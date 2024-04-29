@@ -1,0 +1,90 @@
+.emailListContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 74px 0 24px 0;
+  padding: 0 10px;
+  }
+
+.emailListContainer h3 {
+  font-size: 44px;
+  margin: 0;
+}
+
+.emailListContainer p {
+  margin: 0;
+}
+
+.emailInput {
+  width: 100%;
+  height: 40px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  padding-left: 10px;
+  background-color: #e3e3e3;
+  border: 1px solid #e3e3e3;
+}
+
+.mailChimpForm {
+  width: 450px;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.hiddenAria {
+  display: none !important;
+}
+
+.response {
+  margin-top: 12px;
+}
+
+.submitButton {
+  width: 240px;
+  height: 40px;
+  background-color: #c9b36e;
+  border: none;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #c9b36e;
+  transition: transform 0.3s ease-in-out;
+}
+
+.submitButton:hover {
+  background-color: black;
+  color: #d6d6d6;
+  border: 1px solid #d6d6d6;
+}
+
+@media only screen and (max-width: 768px) {
+  .emailListContainer form {
+    width: 414px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .emailListContainer {
+    max-width: 100%;
+  }
+
+  .emailListContainer p {
+    font-size: 12px;
+  }
+
+  .mailChimpForm {
+    width: 100%;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}

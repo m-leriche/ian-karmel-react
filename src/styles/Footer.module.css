@@ -1,0 +1,14 @@
+.footerContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 80px 34px 0 0;
+  padding-right: 34px;
+  font-size: 10px;
+}
+
+@media only screen and (max-width: 414px) {
+  .footerContainer {
+    padding-right: 10px;
+  }
+}

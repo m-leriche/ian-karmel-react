@@ -1,0 +1,60 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  padding: 0px 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contacts {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.titleContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Kaoly-Demo-Regular', sans-serif;
+  font-size: 2.3rem;
+  color: #c9b36e;
+}
+
+.contact {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact p {
+  margin: 3px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .titleContainer {
+    font-size: 2rem;
+  }
+
+  .contacts {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 0px 10px;
+
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .titleContainer {
+    font-size: 1.7rem;
+  }
+}

@@ -1,0 +1,49 @@
+.circleText {
+  animation: rotateCircle 10s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+.circleWrapper {
+  position: absolute;
+  top: 100px;
+  left: 34px;
+  width: 190px;
+  transition: transform 0.3s ease;
+  height: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .circleWrapper {
+    left: -10px;
+    top: 60px;
+  }
+
+  .circleText svg {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .circleWrapper {
+    left: -28px;
+    top: 51px;
+  }
+}
+
+.circleWrapper:hover {
+  transform: scale(1.1);
+}
+
+@keyframes rotateCircle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

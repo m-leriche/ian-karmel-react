@@ -1,0 +1,86 @@
+.tourDates {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.titleContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Kaoly-Demo-Regular', sans-serif;
+  font-size: 2.3rem;
+  color: #c9b36e;
+}
+
+.container {
+  margin-top: 40px;
+  max-width: 1224px;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+.location p {
+  margin: 0;
+}
+
+.show {
+  flex: 1.5;
+}
+
+.ticket {
+    border: 1px solid #e3e3e3;
+    padding: 10px 20px;
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .titleContainer {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0px 10px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .titleContainer {
+    font-size: 1.7rem;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .tourDates p {
+    font-size: 12px;
+  }
+
+  .tourDates a {
+    font-size: 12px;
+    width: 50px;
+  }
+
+  .show {
+    flex: 2.5;
+  }
+}
