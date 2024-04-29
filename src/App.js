@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import { createClient } from "contentful";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme.js";
-import styles from "./styles/Home.module.css"
+import styles from "./styles/Home.module.css";
 import useContentful from "./useContentful.js";
 // import Navbar from "./components/Navbar/Navbar.js";
 // import BookCircle from "./components/BookCircle/BookCircle.js";
 import TourDatesComponent from "./components/TourDatesComponent/TourDatesComponent.js";
 import Footer from "./components/Footer/Footer.js";
 // import MailchimpForm from "./components/MailChimpForm/MailChimpForm.js";
-import './App.css';
 
 function App() {
   const [tourDates, setTourDates] = useState([]);
@@ -22,9 +21,11 @@ function App() {
     getData(['tourDates', 'heroImage']).then((response) => {
       console.log('response', response)
       setHeroImage(response.includes.Asset[0].fields.file.url)
-      setTourDates(response.items)
+
+      const tourDates = response.items.filter(item => !item.fields.heroImage);
+      setTourDates(tourDates)
     })
-  })
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
@@ -60,7 +61,7 @@ function App() {
       </div>
       {/* <MailchimpForm /> */}
       <TourDatesComponent tourDates={tourDates}/>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 }

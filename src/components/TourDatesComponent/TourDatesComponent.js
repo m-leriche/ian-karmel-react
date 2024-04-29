@@ -1,31 +1,32 @@
-import { useState, useRef, useEffect } from "react";
-// import { createClient } from "contentful";
-import styles from '../../styles/TourDatesComponent.module.css';
+import styles from '../../styles/TourDatesComponent.module.css'
+
 export default function TourDatesComponent({ tourDates }) {
   console.log('tourDates', tourDates)
-  // const today = new Date();
-  // today.setHours(0, 0, 0, 0);
-  // function parseDate(dateStr) {
-  //   const rangeRegex = /^(\w+ \d+)(?: - \d+)? (\d{4})$/;
-  //   const match = dateStr.match(rangeRegex);
-  //   if (match) {
-  //     dateStr = `${match[1]} ${match[2]}`;
-  //   }
-  //   return new Date(dateStr);
-  // }
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  function parseDate(dateStr) {
+    const rangeRegex = /^(\w+ \d+)(?: - \d+)? (\d{4})$/;
+    const match = dateStr.match(rangeRegex);
+    if (match) {
+      dateStr = `${match[1]} ${match[2]}`;
+    }
+    return new Date(dateStr);
+  }
 
-  // const validTourDates = tourDates && tourDates.filter(tourDate => {
-  //   const eventDate = parseDate(tourDate.fields.date);
-  //   return eventDate >= today;
-  // }).sort((a, b) => {
-  //   const dateA = parseDate(a.fields.date);
-  //   const dateB = parseDate(b.fields.date);
-  //   return dateA - dateB;
-  // });
+  const validTourDates = tourDates && tourDates.filter(tourDate => {
+    console.log('tourDate', tourDate.fields.date)
+    const eventDate = parseDate(tourDate.fields.date);
+    console.log('eventDate', eventDate)
+    return eventDate >= today;
+  }).sort((a, b) => {
+    const dateA = parseDate(a.fields.date);
+    const dateB = parseDate(b.fields.date);
+    return dateA - dateB;
+  });
 
   return (
     <div className={`${styles.tourDates} fadeIn`}>
-      {tourDates && tourDates.map((tourDate, i) => {
+      {validTourDates && validTourDates.map((tourDate, i) => {
           return (
             <div key={i} className={styles.container}>
               <div className={styles.location}>
