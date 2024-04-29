@@ -22,7 +22,8 @@ export default function Home() {
       const tourDates = response.items.filter(item => !item.fields.heroImage);
       setTourDates(tourDates)
     })
-  }, [tourDates, heroImage, getData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <ThemeProvider theme={theme}>
       <Navbar />

@@ -18,7 +18,8 @@ function Media() {
       const releaseItems = response.items.filter(item => item.fields.hasOwnProperty('type'));
       setReleases(releaseItems);
     })
-  }, [getData, media, releases])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div>
@@ -28,6 +29,11 @@ function Media() {
       </div>
       <div className={styles.releases}>
         <div className={`${styles.releaseContainer} fadeIn`}>
+          {releases && releases.length === 0 &&
+              <div className={styles.loadingScreen}>
+                <h2>Loading...</h2>
+              </div>
+            }
           {releases && releases.map((item, i) => {
             return (
               <div key={i} className={styles.release}>
@@ -43,6 +49,11 @@ function Media() {
         <h2>Videos</h2>
       </div>
       <div className={styles.videoGallery}>
+        {media && media.length === 0 &&
+          <div className={styles.loadingScreen}>
+            <h2>Loading...</h2>
+          </div>
+        }
       {media && media.map((item, i) => {
         if (item.fields.platform === 'youtube') {
           return (

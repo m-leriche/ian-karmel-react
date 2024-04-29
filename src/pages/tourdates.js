@@ -16,7 +16,8 @@ function TourDatesPage() {
       const tourDates = response.items
       setTourDates(tourDates)
     })
-  }, [tourDates, getData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div>

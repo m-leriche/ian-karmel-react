@@ -1,7 +1,6 @@
 import styles from '../../styles/TourDatesComponent.module.css'
 
 export default function TourDatesComponent({ tourDates }) {
-  console.log('tourDates', tourDates)
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   function parseDate(dateStr) {
@@ -14,9 +13,7 @@ export default function TourDatesComponent({ tourDates }) {
   }
 
   const validTourDates = tourDates && tourDates.filter(tourDate => {
-    console.log('tourDate', tourDate.fields.date)
     const eventDate = parseDate(tourDate.fields.date);
-    console.log('eventDate', eventDate)
     return eventDate >= today;
   }).sort((a, b) => {
     const dateA = parseDate(a.fields.date);
@@ -26,6 +23,11 @@ export default function TourDatesComponent({ tourDates }) {
 
   return (
     <div className={`${styles.tourDates} fadeIn`}>
+      {tourDates && tourDates.length === 0 &&
+      <div className={styles.loadingScreen}>
+        <h2>Loading...</h2>
+      </div>
+      }
       {validTourDates && validTourDates.map((tourDate, i) => {
           return (
             <div key={i} className={styles.container}>

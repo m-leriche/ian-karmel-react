@@ -58,3 +58,12 @@
     font-size: 1.7rem;
   }
 }
+
+.loadingScreen {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #c9b36e;
+  font-size: 1rem;
+}

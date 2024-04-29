@@ -16,9 +16,9 @@ export default function About() {
   useEffect(() => {
     getData(['about']).then((response) => {
       setImage(response.includes.Asset[0].fields.file.url)
-      console.log('response', response)
     })
-  }, [image, getData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>

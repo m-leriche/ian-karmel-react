@@ -12,9 +12,10 @@ export default function Contact() {
 
   useEffect(() => {
     getData(['contacts']).then((response) => {
-      setContacts(response.items)
-    })
-  }, [contacts, getData])
+      setContacts(response.items);
+    });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -24,6 +25,11 @@ export default function Contact() {
           <h1>Booking</h1>
         </div>
         <div className={`${styles.container} fadeIn`}>
+          {contacts && contacts.length === 0 &&
+            <div className={styles.loadingScreen}>
+              <h2>Loading...</h2>
+            </div>
+          }
           <div className={styles.contacts}>
             {contacts && contacts.map((contact, i) => {
               return (
