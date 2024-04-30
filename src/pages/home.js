@@ -55,7 +55,11 @@ export default function Home() {
         </div>
         {/* <BookCircle /> */}
         <div className={styles.bookCta}>
-          <a href="https://bookshop.org/p/books/t-shirt-swim-club-the-struggle-stretch-marks-and-solitude-of-being-fat-in-a-world-made-for-thin-people-ian-karmel/20601105?ean=9780593580929">
+          <a
+            href="https://bookshop.org/p/books/t-shirt-swim-club-the-struggle-stretch-marks-and-solitude-of-being-fat-in-a-world-made-for-thin-people-ian-karmel/20601105?ean=9780593580929"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
           <img src="../../images/tshirtswimclub.jpg" alt="Order T Shirt Swim Club" />
           </a>
         </div>
