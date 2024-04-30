@@ -5,7 +5,7 @@ import { theme } from '../theme.js';
 import useContentful from "../useContentful.js";
 import styles from "../styles/Home.module.css";
 import Navbar from "../components/Navbar/Navbar.js";
-import BookCircle from "../components/BookCircle/BookCircle.js";
+// import BookCircle from "../components/BookCircle/BookCircle.js";
 import TourDatesComponent from "../components/TourDatesComponent/TourDatesComponent.js";
 import Footer from "../components/Footer/Footer.js";
 import MailchimpForm from "../components/MailChimpForm/MailChimpForm.js";
@@ -53,7 +53,12 @@ export default function Home() {
             </svg>
           </a>
         </div>
-        <BookCircle />
+        {/* <BookCircle /> */}
+        <div className={styles.bookCta}>
+          <a href="https://bookshop.org/p/books/t-shirt-swim-club-the-struggle-stretch-marks-and-solitude-of-being-fat-in-a-world-made-for-thin-people-ian-karmel/20601105?ean=9780593580929">
+          <img src="../../images/tshirtswimclub.jpg" alt="Order T Shirt Swim Club" />
+          </a>
+        </div>
       </div>
       <MailchimpForm />
       <TourDatesComponent tourDates={tourDates}/>
