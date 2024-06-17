@@ -28,6 +28,11 @@ export default function TourDatesComponent({ tourDates }) {
         <h2>Loading...</h2>
       </div>
       }
+      {!tourDates &&
+      <div className={styles.loadingScreen}>
+        <h2>Check back soon!</h2>
+      </div>
+      }
       {validTourDates && validTourDates.map((tourDate, i) => {
           return (
             <div key={i} className={styles.container}>
